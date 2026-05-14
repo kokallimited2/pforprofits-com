@@ -1,8 +1,8 @@
 // === Property Investment Calculators ===
 
 // Format currency
-function £(n) { return '£' + Number(n).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
-function %(n) { return Number(n).toFixed(2) + '%'; }
+function fmtPound(n) { return '£' + Number(n).toLocaleString('en-GB', {minimumFractionDigits: 0, maximumFractionDigits: 0}); }
+function fmtPercent(n) { return Number(n).toFixed(2) + '%'; }
 
 // === BRRR CALCULATOR ===
 function calcBRRR() {
@@ -19,14 +19,14 @@ function calcBRRR() {
   const cashOut = refiAmount > totalInvest ? '£' + Number(refiAmount - totalInvest).toLocaleString('en-GB') : 'None — cash in';
   const roi = cashLeftIn > 0 ? ((postValue - totalInvest) / totalInvest) * 100 : 0;
 
-  document.getElementById('brrr-investment').textContent = £(totalInvest);
-  document.getElementById('brrr-refinance').textContent = £(refiAmount);
-  document.getElementById('brrr-cash-in').textContent = £(Math.max(0, cashLeftIn));
+  document.getElementById('brrr-investment').textContent = fmtPound(totalInvest);
+  document.getElementById('brrr-refinance').textContent = fmtPound(refiAmount);
+  document.getElementById('brrr-cash-in').textContent = fmtPound(Math.max(0, cashLeftIn));
   document.getElementById('brrr-cash-out').textContent = cashOut;
-  document.getElementById('brrr-roi').textContent = %(roi);
+  document.getElementById('brrr-roi').textContent = fmtPercent(roi);
 
   const cfEl = document.getElementById('brrr-cashflow');
-  cfEl.textContent = £(rent);
+  cfEl.textContent = fmtPound(rent);
   cfEl.className = 'result-value ' + (rent >= 0 ? 'positive' : 'negative');
 }
 
@@ -43,12 +43,12 @@ function calcYield() {
   const netYield = price > 0 ? (netAnnual / price) * 100 : 0;
   const monthly = netAnnual / 12;
 
-  document.getElementById('yield-gross').textContent = %(grossYield);
-  document.getElementById('yield-net').textContent = %(netYield);
-  document.getElementById('yield-gross-income').textContent = £(grossAnnual);
-  document.getElementById('yield-net-income').textContent = £(netAnnual);
+  document.getElementById('yield-gross').textContent = fmtPercent(grossYield);
+  document.getElementById('yield-net').textContent = fmtPercent(netYield);
+  document.getElementById('yield-gross-income').textContent = fmtPound(grossAnnual);
+  document.getElementById('yield-net-income').textContent = fmtPound(netAnnual);
   const mEl = document.getElementById('yield-monthly');
-  mEl.textContent = £(monthly);
+  mEl.textContent = fmtPound(monthly);
   mEl.className = 'result-value ' + (monthly >= 0 ? 'positive' : 'negative');
 }
 
@@ -68,15 +68,15 @@ function calcDeal() {
   const roi = totalInvest > 0 ? (annualFlow / totalInvest) * 100 : 0;
   const breakeven = annualFlow > 0 ? Math.round(totalInvest / annualFlow * 12) : '—';
 
-  document.getElementById('deal-investment').textContent = £(totalInvest);
+  document.getElementById('deal-investment').textContent = fmtPound(totalInvest);
   const cfEl = document.getElementById('deal-cashflow');
-  cfEl.textContent = £(monthlyFlow);
+  cfEl.textContent = fmtPound(monthlyFlow);
   cfEl.className = 'result-value ' + (monthlyFlow >= 0 ? 'positive' : 'negative');
 
   const afEl = document.getElementById('deal-annual');
-  afEl.textContent = £(annualFlow);
+  afEl.textContent = fmtPound(annualFlow);
   afEl.className = 'result-value ' + (annualFlow >= 0 ? 'positive' : 'negative');
 
-  document.getElementById('deal-roi').textContent = %(roi);
+  document.getElementById('deal-roi').textContent = fmtPercent(roi);
   document.getElementById('deal-breakeven').textContent = breakeven;
 }
