@@ -125,7 +125,7 @@
 <!-- TRUST BAR -->
 <div style="background: var(--white); padding: 24px; border-bottom: 1px solid var(--gray-50);">
   <div class="section-inner" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; text-align: center;">
-    <div><strong style="color: var(--navy); font-size: 1.3rem;">3</strong><br><span style="color: var(--gray-500); font-size: 0.85rem;">Free Calculators</span></div>
+    <div><strong style="color: var(--navy); font-size: 1.3rem;">4</strong><br><span style="color: var(--gray-500); font-size: 0.85rem;">Free Calculators</span></div>
     <div><strong style="color: var(--navy); font-size: 1.3rem;">UK</strong><br><span style="color: var(--gray-500); font-size: 0.85rem;">Property Focused</span></div>
     <div><strong style="color: var(--navy); font-size: 1.3rem;">100%</strong><br><span style="color: var(--gray-500); font-size: 0.85rem;">Free to Use</span></div>
     <div><strong style="color: var(--navy); font-size: 1.3rem;">No Signup</strong><br><span style="color: var(--gray-500); font-size: 0.85rem;">Instant Results</span></div>
@@ -164,7 +164,7 @@
   <div class="text-center">
     <div class="section-label">Free Tools</div>
     <h2 class="section-title">Property Investment Calculators</h2>
-    <p class="section-sub" style="margin: 0 auto 48px;">Three essential calculators every UK property investor needs. No signup, no spam — just accurate numbers.</p>
+    <p class="section-sub" style="margin: 0 auto 48px;">Four essential calculators every UK property investor needs. No signup, no spam — just accurate numbers.</p>
   </div>
 
   <div class="tools-grid">
@@ -190,6 +190,14 @@
       <h3>Deal Analyser</h3>
       <p>Full property deal analysis: total investment, monthly cash flow, ROI, and breakeven timeline. Make data-driven offers.</p>
       <a href="#deal-calc" class="btn btn-gold-outline">Open Calculator →</a>
+    </div>
+
+    <!-- Stamp Duty -->
+    <div class="tool-card">
+      <div class="tool-icon">📜</div>
+      <h3>Stamp Duty Calculator</h3>
+      <p>Instant SDLT calculation with first-time buyer relief and additional property surcharge. Know exactly what you'll pay before you buy.</p>
+      <a href="#sdlt-calc" class="btn btn-gold-outline">Open Calculator →</a>
     </div>
   </div>
 </div>
@@ -294,6 +302,60 @@
       <div class="result-row"><span class="result-label">Annual Cash Flow</span><span class="result-value positive" id="deal-annual">£3,600</span></div>
       <div class="result-row"><span class="result-label">Cash-on-Cash ROI</span><span class="result-value positive" id="deal-roi">6.86%</span></div>
       <div class="result-row" style="border-bottom:none;"><span class="result-label">Breakeven (months)</span><span class="result-value" id="deal-breakeven">175</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STAMP DUTY CALCULATOR -->
+<section class="section" id="sdlt-calc" style="background: var(--cream);">
+<div class="section-inner">
+  <div class="text-center">
+    <div class="section-label">Calculator #4</div>
+    <h2 class="section-title">Stamp Duty (SDLT) Calculator</h2>
+    <p class="section-sub" style="margin: 0 auto 48px;">Work out exactly how much Stamp Duty Land Tax you'll pay on a residential property in England &amp; Northern Ireland. Covers standard rates, first-time buyer relief, and the 3% additional property surcharge.</p>
+  </div>
+  <div class="calc-grid">
+    <div class="calc-form">
+      <label>Property Purchase Price (£)</label>
+      <input class="calc-input" type="number" id="sdlt-price" value="300000" oninput="calcSDLT()">
+
+      <label>Property Type</label>
+      <select class="select-input" id="sdlt-surcharge" onchange="calcSDLT()">
+        <option value="no">Standard residential property</option>
+        <option value="yes">Additional property / Buy-to-Let / Second home</option>
+      </select>
+
+      <label>First-Time Buyer?</label>
+      <select class="select-input" id="sdlt-ftb" onchange="calcSDLT()">
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+
+      <div style="margin-top:20px;">
+        <span class="tag tag-default" id="sdlt-tag">Standard Residential</span>
+      </div>
+    </div>
+    <div class="calc-result" id="sdlt-result">
+      <div class="sdlt-result-grid">
+        <div class="sdlt-stat">
+          <span class="stat-label">Stamp Duty Due</span>
+          <span class="stat-value gold" id="sdlt-total">£0</span>
+        </div>
+        <div class="sdlt-stat">
+          <span class="stat-label">Effective Rate</span>
+          <span class="stat-value" id="sdlt-rate">0.00%</span>
+        </div>
+        <div class="sdlt-stat">
+          <span class="stat-label">Total Purchase Cost</span>
+          <span class="stat-value" id="sdlt-purchase">£300,000</span>
+        </div>
+      </div>
+      <h4>Band Breakdown</h4>
+      <div class="sdlt-breakdown" id="sdlt-breakdown">
+        <div class="sdlt-band"><span>£0 – £250,000</span><span class="band-rate">0%</span><span class="band-amount">£0</span></div>
+        <div class="sdlt-band"><span>£250,001 – £300,000</span><span class="band-rate">5%</span><span class="band-amount">£2,500</span></div>
+      </div>
+      <p style="font-size:0.78rem; color:var(--gray-500); margin-top:12px; border-top:1px solid var(--gray-100); padding-top:12px;">Based on current residential SDLT rates for England &amp; NI. Always verify with your solicitor or HMRC. Does not account for non-resident surcharge or leasehold premium rules.</p>
     </div>
   </div>
 </div>
@@ -410,6 +472,7 @@
 calcBRRR();
 calcYield();
 calcDeal();
+calcSDLT();
 </script>
 </body>
 </html>
