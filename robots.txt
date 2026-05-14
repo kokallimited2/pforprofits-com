@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Deny scrapers
+User-agent: Amazonbot
+Disallow: /
+User-agent: Bytespider
+Disallow: /
+User-agent: CCBot
+Disallow: /
+
+# Re-allow AI crawlers
+User-agent: *
+Allow: /
+Disallow: /css/
+Disallow: /js/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://pforprofits.com/sitemap.xml
