@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — pforprofits.com</title>
+<meta name="description" content="Choose the right property investment plan. Free tools for casual investors, Pro for serious deal-makers.">
+<link rel="canonical" href="https://pforprofits.com/pricing">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/js/membership.js"></script>
+<style>
+:root {--bg: #0a0a0f;--card: #13131a;--border: #1e1e2a;--text: #e0e0e8;--muted: #787890;--green: #22c55e;--blue: #3b82f6;--orange: #f59e0b;--red: #ef4444;}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.page{padding-top:80px}
+
+/* nav */
+.nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-weight:700;font-size:1.1rem;color:var(--green);text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:24px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.9rem;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.btn-primary{display:inline-block;padding:10px 24px;background:var(--green);color:#000!important;border-radius:8px;font-weight:600;font-size:0.9rem;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.9}
+.btn-secondary{display:inline-block;padding:10px 24px;background:var(--border);color:var(--text)!important;border-radius:8px;font-weight:500;font-size:0.9rem;text-decoration:none;border:none;cursor:pointer;transition:opacity .2s}
+.nav-link{color:var(--muted);text-decoration:none;font-size:0.9rem}
+.nav-link:hover{color:var(--text)}
+.pro-badge{background:var(--green);color:#000;font-size:0.7rem;font-weight:700;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+
+/* hero */
+.hero{text-align:center;padding:80px 24px 60px;max-width:800px;margin:0 auto}
+.hero h1{font-size:2.8rem;font-weight:700;margin-bottom:16px;background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto}
+.section-label{display:inline-block;color:var(--green);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+
+/* pricing cards */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1100px;margin:0 auto 80px;padding:0 24px}
+.pricing-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:40px 32px;position:relative;transition:border-color .3s,transform .3s}
+.pricing-card:hover{transform:translateY(-4px)}
+.pricing-card.popular{border-color:var(--green);box-shadow:0 0 30px rgba(34,197,94,0.1)}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:0.75rem;font-weight:700;padding:4px 16px;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+.pricing-card h3{font-size:1.3rem;font-weight:600;margin-bottom:8px}
+.pricing-card .sub{color:var(--muted);font-size:0.9rem;margin-bottom:24px;min-height:40px}
+.price{font-size:2.5rem;font-weight:700;margin-bottom:4px}
+.price span{font-size:1rem;color:var(--muted);font-weight:400}
+.price-sub{font-size:0.85rem;color:var(--muted);margin-bottom:24px}
+.features{list-style:none;margin-bottom:32px}
+.features li{padding:10px 0;border-bottom:1px solid var(--border);font-size:0.9rem;display:flex;align-items:center;gap:10px}
+.features li:last-child{border-bottom:none}
+.features .check{color:var(--green);font-weight:700}
+.features .cross{color:var(--muted);opacity:.5}
+.pricing-card .btn-primary,.pricing-card .btn-secondary{width:100%;text-align:center;padding:14px;font-size:1rem}
+
+/* comparison table */
+.comparison{max-width:1000px;margin:0 auto 80px;padding:0 24px}
+.comparison h2{text-align:center;font-size:1.8rem;margin-bottom:40px}
+.comp-table{width:100%;border-collapse:collapse}
+.comp-table th{padding:16px;text-align:left;border-bottom:2px solid var(--border);font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.comp-table th:not(:first-child){text-align:center}
+.comp-table td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:0.9rem}
+.comp-table td:not(:first-child){text-align:center}
+.comp-table .yes{color:var(--green);font-weight:700}
+.comp-table .no{color:var(--muted);opacity:.5}
+.comp-table tr:hover{background:rgba(255,255,255,0.02)}
+
+/* faq */
+.faq-section{max-width:700px;margin:0 auto 80px;padding:0 24px}
+.faq-section h2{text-align:center;font-size:1.8rem;margin-bottom:40px}
+.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:var(--text);font-size:1rem;font-weight:500;padding:20px 24px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q:after{content:'+';font-size:1.3rem;color:var(--muted);transition:transform .3s}
+.faq-item.open .faq-q:after{content:'−'}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s;padding:0 24px;color:var(--muted);font-size:0.9rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 20px}
+
+/* footer */
+footer{border-top:1px solid var(--border);padding:60px 24px 24px;margin-top:40px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{color:var(--green);margin-bottom:8px}
+.footer-brand p{font-size:0.85rem;color:var(--muted);line-height:1.6}
+.footer-col h4{font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px}
+.footer-col a{display:block;color:var(--muted);text-decoration:none;font-size:0.85rem;margin-bottom:8px}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;font-size:0.8rem;color:var(--muted);padding-top:24px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="nav-inner">
+  <a href="/" class="nav-logo">pforprofits.com</a>
+  <div class="nav-links">
+    <a href="/">Tools</a>
+    <a href="/guides/">Guides</a>
+    <a href="/pricing.html">Pricing</a>
+    <div class="nav-right" id="nav-right">
+      <a href="/login.html" class="nav-link">Sign In</a>
+      <a href="/signup.html" class="btn-primary">Get Started Free</a>
+    </div>
+  </div>
+</div>
+</nav>
+
+<div class="page">
+<section class="hero">
+  <div class="section-label">PRICING</div>
+  <h1>Invest Smarter, Not Harder</h1>
+  <p>Start with free calculators to analyse any deal. Upgrade to Pro for unlimited deal analysis, market reports, and advanced tools.</p>
+</section>
+
+<div class="pricing-grid">
+  <!-- Free -->
+  <div class="pricing-card">
+    <h3>Free</h3>
+    <p class="sub">Perfect for getting started with property analysis.</p>
+    <div class="price">£0 <span>/mo</span></div>
+    <p class="price-sub">No credit card required</p>
+    <ul class="features">
+      <li><span class="check">✓</span> BRRR Calculator</li>
+      <li><span class="check">✓</span> Rental Yield Calculator</li>
+      <li><span class="check">✓</span> Deal Analyser (basic)</li>
+      <li><span class="check">✓</span> Stamp Duty Calculator</li>
+      <li><span class="check">✓</span> Blog & Guides</li>
+      <li><span class="cross">✗</span> Unlimited deal saves</li>
+      <li><span class="cross">✗</span> Monthly market reports</li>
+      <li><span class="cross">✗</span> Area guides PDF downloads</li>
+      <li><span class="cross">✗</span> Advanced analytics</li>
+      <li><span class="cross">✗</span> Email support</li>
+    </ul>
+    <a href="/signup.html" class="btn-primary">Get Started Free</a>
+  </div>
+
+  <!-- Pro Monthly -->
+  <div class="pricing-card popular">
+    <div class="popular-badge">Most Popular</div>
+    <h3>Pro</h3>
+    <p class="sub">For serious investors who analyse multiple deals weekly.</p>
+    <div class="price">£9.99 <span>/mo</span></div>
+    <p class="price-sub">Cancel anytime</p>
+    <ul class="features">
+      <li><span class="check">✓</span> Everything in Free</li>
+      <li><span class="check">✓</span> Unlimited deal saves & comparison</li>
+      <li><span class="check">✓</span> Monthly UK market reports</li>
+      <li><span class="check">✓</span> Area guides (PDF download)</li>
+      <li><span class="check">✓</span> Advanced deal analytics</li>
+      <li><span class="check">✓</span> Portfolio tracking</li>
+      <li><span class="check">✓</span> Export reports (PDF/CSV)</li>
+      <li><span class="check">✓</span> Priority email support</li>
+      <li><span class="check">✓</span> New features first access</li>
+      <li><span class="check">✓</span> No ads</li>
+    </ul>
+    <button id="checkout-pro-monthly" class="btn-primary">Subscribe — £9.99/mo</button>
+  </div>
+
+  <!-- Pro Annual -->
+  <div class="pricing-card">
+    <h3>Pro Annual</h3>
+    <p class="sub">Best value — save 17% compared to monthly.</p>
+    <div class="price">£99 <span>/yr</span></div>
+    <p class="price-sub">£8.25/mo billed annually • Save £20</p>
+    <ul class="features">
+      <li><span class="check">✓</span> Everything in Pro Monthly</li>
+      <li><span class="check">✓</span> 2 months free</li>
+      <li><span class="check">✓</span> Priority onboarding</li>
+      <li><span class="check">✓</span> Exclusive investor community access</li>
+      <li><span class="check">✓</span> Quarterly 1-on-1 market review</li>
+      <li><span class="check">✓</span> Early access to new tools</li>
+      <li><span class="cross" style="opacity:0">—</span></li>
+      <li><span class="cross" style="opacity:0">—</span></li>
+      <li><span class="cross" style="opacity:0">—</span></li>
+      <li><span class="cross" style="opacity:0">—</span></li>
+    </ul>
+    <button id="checkout-pro-annual" class="btn-primary">Subscribe — £99/yr</button>
+  </div>
+</div>
+
+<!-- Comparison Table -->
+<section class="comparison">
+  <h2>Compare Plans</h2>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Feature</th><th>Free</th><th>Pro</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>BRRR Calculator</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Rental Yield Calculator</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Deal Analyser</td><td class="yes">Basic</td><td class="yes">Advanced</td></tr>
+      <tr><td>Stamp Duty Calculator</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+      <tr><td>Save & Compare Deals</td><td class="no">✗</td><td class="yes">Unlimited</td></tr>
+      <tr><td>Monthly Market Reports</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Area Guides (PDF)</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Portfolio Tracker</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Export Reports</td><td class="no">✗</td><td class="yes">PDF/CSV</td></tr>
+      <tr><td>Priority Support</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      <tr><td>Ad-Free</td><td class="no">✗</td><td class="yes">✓</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <h2>Membership FAQs</h2>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I start for free?</button>
+    <div class="faq-a">Absolutely. Create a free account and get instant access to all basic calculators: BRRR, rental yield, deal analyser, and stamp duty. No credit card needed.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What happens if I cancel Pro?</button>
+    <div class="faq-a">Your Pro access continues until the end of your billing period. After that, you'll revert to the Free plan. All your saved deals and history remain intact — upgrade again anytime to pick up where you left off.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">How do I pay?</button>
+    <div class="faq-a">We use Stripe for secure payment processing. All major credit and debit cards are accepted. Payments are processed securely — we never store your card details.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I get a refund?</button>
+    <div class="faq-a">Yes — we offer a 14-day money-back guarantee on all Pro subscriptions. If you're not satisfied, email us and we'll refund your payment in full.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's included in the market reports?</button>
+    <div class="faq-a">Pro members receive monthly UK property market reports covering: average yields by city, price trends, rental demand data, stamp duty changes, mortgage rate analysis, and emerging investment hotspots. Reports are delivered to your account dashboard and via email.</div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">Is Pro worth it for casual investors?</button>
+    <div class="faq-a">The Free plan covers everything a casual investor needs (basic calculators, guides). Pro is designed for active investors analysing multiple deals per month. If you're looking at 1-2 properties a year, Free is likely enough. If you're comparing 5+ deals monthly, Pro pays for itself quickly.</div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="footer-inner">
+  <div class="footer-brand">
+    <h3>pforprofits.com</h3>
+    <p>Free property investment calculators and tools for UK investors. Run the numbers on any deal in seconds, before you make an offer.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Tools</h4>
+    <a href="/#brrr-calc">BRRR Calculator</a>
+    <a href="/#yield-calc">Rental Yield Calculator</a>
+    <a href="/#deal-calc">Deal Analyser</a>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <a href="/about.html">About</a>
+    <a href="/guides/">Guides & Resources</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/privacy-policy.html">Privacy Policy</a>
+    <a href="/affiliate-disclosure.html">Affiliate Disclosure</a>
+  </div>
+</div>
+<div class="footer-bottom">
+  <span>© 2026 pforprofits.com — All rights reserved.</span>
+  <span>Not financial advice. Always consult a qualified professional.</span>
+</div>
+</footer>
+
+<script>
+// Update nav auth state on load
+updateNavAuth();
+
+// Stripe checkout buttons (placeholder — will be wired when Stripe is connected)
+document.getElementById('checkout-pro-monthly')?.addEventListener('click', async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) { window.location.href = '/login.html?redirect=/pricing.html'; return; }
+  
+  // When Stripe is set up, this will redirect to Stripe Checkout
+  // For now, show coming soon notice
+  alert('Stripe payments are being set up. You\'ll be able to subscribe shortly!');
+});
+
+document.getElementById('checkout-pro-annual')?.addEventListener('click', async () => {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) { window.location.href = '/login.html?redirect=/pricing.html'; return; }
+  
+  alert('Stripe payments are being set up. You\'ll be able to subscribe shortly!');
+});
+</script>
+</body>
+</html>

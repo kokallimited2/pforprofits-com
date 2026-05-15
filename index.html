@@ -23,6 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/js/membership.js"></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -105,7 +107,8 @@
     <a href="/guides/">Guides</a>
     <a href="/blog/">Blog</a>
     <a href="/about.html">About</a>
-    <a href="/#lead" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">Get Free Report</a>
+    <a href="/pricing.html">Pricing</a>
+    <div class="nav-right" id="nav-right"></div>
   </div>
 </div>
 </nav>
@@ -467,12 +470,15 @@
 </footer>
 
 <script src="/js/property-tools.js?v=3"></script>
+<script src="/js/membership.js"></script>
 <script>
 // Initial calculations on load
 calcBRRR();
 calcYield();
 calcDeal();
 calcSDLT();
+// Auth nav update
+updateNavAuth();
 </script>
 </body>
 </html>
