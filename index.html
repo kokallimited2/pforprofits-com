@@ -79,6 +79,61 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pforprofits.com/#organization",
+      "name": "P for Profits",
+      "url": "https://pforprofits.com/",
+      "logo": "https://pforprofits.com/favicon.svg",
+      "description": "UK property investment tools, calculators, and guides - BRRR analysis, rental yield, deal finding.",
+      "knowsAbout": ["Property investment", "BRRR method", "UK property market", "Rental yield", "Property finance"],
+      "sameAs": ["https://x.com/pforprofits", "https://github.com/kokallimited2"],
+      "makesOffer": [
+        {"@type": "Offer", "itemOffered": {"@id": "https://pforprofits.com/#brrr-calc"}},
+        {"@type": "Offer", "itemOffered": {"@id": "https://pforprofits.com/#yield-calc"}}
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://pforprofits.com/#brrr-calc",
+      "name": "BRRR Property Deal Analyser",
+      "description": "Analyse BRRR property deals: after-repair value, purchase costs, refurb costs, monthly cashflow, and ROI.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+      "author": {"@id": "https://pforprofits.com/#organization"}
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://pforprofits.com/#yield-calc",
+      "name": "Rental Yield Calculator",
+      "description": "Calculate gross and net rental yield for UK investment properties with accurate cost breakdowns.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "GBP"},
+      "author": {"@id": "https://pforprofits.com/#organization"}
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pforprofits.com/#website",
+      "url": "https://pforprofits.com/",
+      "name": "P for Profits",
+      "description": "Free UK property investment tools and educational content.",
+      "publisher": {"@id": "https://pforprofits.com/#organization"},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://pforprofits.com/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
